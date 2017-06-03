@@ -1,0 +1,60 @@
+/*
+#include<iostream>
+#include<string.h>
+using namespace std;
+const int T=1000;
+
+int getdigit(int x)
+{
+	int s = 0;
+	while(x>9)
+	{
+		s += x % 10;
+		x /= 10;
+	}
+	s += x;
+	return s;
+}
+
+int main()
+{
+	char number[T];
+	//可能数字会很大 
+	while(cin>>number&&number[0]!='0')
+	{
+		int sum=0;
+		for(int i=0;i<strlen(number);i++)
+			sum+=number[i]-'0';
+		for (; sum > 9;)
+		{
+			sum = getdigit(sum);
+		}
+		cout << sum << endl;
+	}
+	return 0;
+}
+*/
+//上面的代码是按题目直接做 
+//下面的是 九余数法   
+#include<iostream>
+#include<string.h>
+using namespace std;
+const int T=1000;
+
+int main()
+{
+	
+		char n[T];
+		
+		while(cin>>n&&n[0]!='0')
+		{
+			int sum=0;
+			for(int i=0;i<strlen(n);i++)
+				sum+=n[i]-'0';
+		
+		if(!sum)return 0;
+		if(sum%9==0)cout<<'9'<<endl;
+		else cout<<sum%9<<endl;
+		}
+	return 0; 
+ } 
