@@ -1,0 +1,55 @@
+#include<iostream>
+#include<algorithm>
+#include<iomanip>
+using namespace std;
+const int T=1005;
+
+struct Room
+{
+	double javabeans;
+	double food;
+	double price;
+};
+
+bool cmp(Room a,Room b)
+{
+	return a.price >b.price;
+}
+
+int main()
+{
+	Room room[T];
+	int M,N;
+	
+	while(cin>>M>>N)
+	{
+		if(M==-1&&N==-1)break;
+		
+		for(int i=0;i<N;i++)
+		{
+			cin>>room[i].javabeans>>room[i].food;
+			room[i].price=(double)room[i].javabeans/room[i].food;
+		}
+		
+		sort(room,room+N,cmp);
+		
+		double total=0;
+		for(int i=0; M>0&&i<N; i++)
+		{
+			if(M>=room[i].food)
+			{
+				M-=room[i].food;
+				total+=room[i].javabeans;
+			}
+			else
+			{
+				total+=(double)M*room[i].price;
+				break;
+			}
+		}
+		
+		cout<<fixed<<setprecision(3)<<total<<endl;
+	}
+	
+	return 0;
+}
