@@ -1,0 +1,44 @@
+#include<iostream>
+#include<string.h> 
+using namespace std;
+
+int main()
+{
+	int N;
+	while(cin>>N)
+	{
+		if(!N)break;
+		char balloon[1000][15];
+		int count[1000]={0};
+		
+		for(int i=0;i<N;i++)
+		{
+			cin>>balloon[i];
+			count[i]++;
+		}
+		
+		for(int i=0;i<N-1;i++)
+		{
+			for(int j=i+1;j<N;j++)
+			{
+				if(strcmp(balloon[i],balloon[j])==0)
+					count[i]++;
+			}
+		}
+		
+		int flag=0;
+		int max=0;
+		for(int t=0;t<N;t++)
+		{
+			if(count[t]>max)
+			{
+				max=count[t];
+				flag=t;
+			}
+		}
+		
+		cout<<balloon[flag]<<endl;
+	}
+	
+	return 0;
+}
