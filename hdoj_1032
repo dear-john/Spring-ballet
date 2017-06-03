@@ -1,0 +1,38 @@
+#include<iostream>
+using namespace std;
+int fun(int n)
+{
+	int s=0;
+	while(1)
+	{
+		if(n==1)return s+1;
+		if(n==16)return s+5;
+		if(n%2)n=3*n+1;
+		else n/=2;
+		s++;
+	}
+	return s;
+}
+int main()
+{
+	int m,n;
+	while(cin>>n>>m)
+	{
+		int max=1,temp=0;
+		int a=n,b=m;
+		if(n>m)
+		{
+			int t=n;
+			n=m;
+			m=t;
+		}
+		for(int i=n;i<=m;i++)
+		{
+			temp=fun(i);
+			if(temp>max)
+				max=temp;
+		}
+		cout<<a<<' '<<b<<' '<<max<<endl;
+	}
+	return 0;
+ } 
