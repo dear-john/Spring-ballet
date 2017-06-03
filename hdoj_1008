@@ -1,0 +1,35 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int n;
+	while(cin>>n&&n)
+	{
+		int total=0;
+		int nextfloor=0,nowfloor=0;
+		for(int i=0;i<n;i++)
+		{
+			cin>>nextfloor;
+			
+			if(nowfloor<nextfloor)	//up
+			{
+				total+=(nextfloor-nowfloor)*6+5;
+			}
+			else if(nowfloor>nextfloor)		//down
+			{
+				total+=(nowfloor-nextfloor)*4+5;
+			}
+			else	//same floor,need wait
+			{
+				total+=5;
+			}
+			
+			nowfloor=nextfloor;
+		}
+		
+		cout<<total<<endl;
+	}
+	
+	return 0;
+}
