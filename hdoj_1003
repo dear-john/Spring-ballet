@@ -1,0 +1,47 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int T;
+	cin>>T;
+	
+	for(int t=1;t<=T;t++)
+	{
+		int N;
+		int a[100000];
+		cin>>N;
+		
+		for(int i=0;i<N;i++)
+			cin>>a[i];
+		
+		int maxsum=-1001;
+		int sum=0;
+		int startpos=1,stoppos=1,k=1;
+		
+		for(int i=0;i<N;i++)
+		{
+			if(sum>=0)
+			{
+				sum+=a[i];
+			}
+			else
+			{
+				sum=a[i];
+				k=i+1;
+			}
+			if(sum>maxsum)
+			{
+				maxsum=sum;
+				stoppos=i+1;
+				startpos=k;
+			}
+		}
+		
+		cout<<"Case "<<t<<':'<<endl;
+		cout<<maxsum<<' '<<startpos<<' '<<stoppos<<endl;
+		if(t!=T)cout<<endl;
+	 } 
+	 
+	 return 0;
+}
