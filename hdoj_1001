@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class hdoj_1001 {
+
+	public static void main(String[] args)
+	{
+		Scanner s = new Scanner(System.in);
+		while(s.hasNextInt())
+		{
+			int a = s.nextInt();
+			int sum;
+			if(a%2==0)
+			{
+				sum=a/2*(a+1);
+			}
+			else
+			{
+				sum=(a+1)/2*a;
+			}
+			System.out.println(sum);
+			System.out.println();;
+		}
+		s.close();
+	}
+}
