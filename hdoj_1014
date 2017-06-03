@@ -1,0 +1,61 @@
+////////这段代码是按题意做，下一段实质是求公约数
+/* 
+#include<iostream>
+#include<iomanip>
+using namespace std;
+
+int main()
+{
+	int step,mod;
+	while(cin>>step>>mod)
+	{
+		int i=1;
+		int x=0;
+		for(;i<=mod;i++)
+		{
+			x=(x+step)%mod;
+			if(x==0)break;
+		}
+		//cout<<setiosflags(ios::right);///右对齐 
+		cout<<setw(10);
+		cout<<step;
+		//cout<<setiosflags(ios::right); //可有可无 
+		cout<<setw(10);
+		cout<<mod;
+		cout<<"    ";/////four space
+		if(i==mod)
+			cout<<"Good Choice\n\n";
+		else 
+			cout<<"Bad Choice\n\n";
+	}
+	return 0;
+}
+*/
+
+#include<iostream>
+#include<iomanip>
+using namespace std;
+int main()
+{
+	int step,mod,i;
+	bool flag=false;
+	while(cin>>step>>mod)
+	{
+		int max=step>mod?step:mod;
+		for(i=2;i<=max;i++)
+		{
+			if(step%i==0&&mod%i==0)///求公约数 
+			{
+				flag=false;
+				break;
+			}
+		}
+		if(i>max)flag=true;
+		cout<<setw(10)<<step<<setw(10)<<mod;
+		if(flag)
+			cout<<"    Good Choice\n\n";
+		else
+			cout<<"    Bad Choice\n\n"; 
+	}
+	return 0;
+ } 
