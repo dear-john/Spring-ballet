@@ -1,0 +1,48 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+bool rule2(bool isvowel[],int length)
+{
+	for (int i = 2; i < length; i++)
+			{
+				if(isvowel[i-2]&&isvowel[i-1]&&isvowel[i] )
+					return false;
+				else if ( !isvowel[i-2] && !isvowel[i-1] && !isvowel[i] )
+					return false;
+			}
+	return true;
+}
+bool rule3(char pw[],int length)
+{
+	for (int i = 0; i < length - 1; i++)
+			{
+			if(pw[i]==pw[i+1]&&pw[i] != 'e'&&pw[i] != 'o')
+				return false;
+			}
+	return true;
+}
+int main()
+{
+	char pw[21];
+	bool isvowel[21];
+	while(cin>>pw)
+	{
+		if(strcmp(pw,"end")==0)break;
+		int length=strlen(pw);
+		bool flag=false;
+		for (int i = 0; i < length; i++)
+		{
+			if(pw[i]=='a'|| pw[i] == 'e' || pw[i] == 'i' || pw[i] == 'o' || pw[i] == 'u')
+			{
+				isvowel[i] = true;
+				flag=true;
+			}
+			else isvowel[i] = false;
+		}
+		if(!flag || !rule2(isvowel,length) || !rule3(pw,length))
+		//为什么 flag && rule2(isvowel,length) && rule3(pw,length)不能通过？？？ 
+			cout << '<' << pw << '>' << " is not acceptable.\n"; 
+		else cout << '<' << pw << '>' << " is acceptable.\n"; 
+	}
+	return 0;
+}
