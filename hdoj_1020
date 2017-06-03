@@ -1,0 +1,29 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+
+int main()
+{
+	int N;
+	cin>>N;
+	char letter[10001];
+	while(N--)
+	{
+		int count=1;
+		cin>>letter;
+		int length=strlen(letter);
+		for(int i=0;i<=length-1;i++)
+		{
+			if(letter[i]==letter[i+1])
+				count++;
+			else
+			{
+				if(count==1)cout<<letter[i];
+				else cout<<count<<letter[i];
+				count=1; 
+			}
+		 } 
+		 cout<<endl;
+	}
+	return 0;
+}
