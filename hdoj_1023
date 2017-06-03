@@ -1,0 +1,53 @@
+#include<iostream>
+using namespace std;
+int a[110][110];
+void catalan()
+{
+	a[1][0]=1;//第一个catalan数长度为1
+	a[1][1]=1;// 第一个catalan数个位数字是1
+	a[2][0]=1;
+	a[2][1]=2;
+	int i,j,c,s;
+	int len=1;
+	for(i=3;i<101;i++)//题目只需要1-100
+	{
+		c=0;
+		for(j=1;j<=len;j++)//因为a[n][1]是个位数，所以不从0开始
+		{
+			s=a[i-1][j]*(4*i-2)+c;
+			a[i][j]=s%10;
+			c=s/10;
+		 } 
+		 while(c)
+		 {
+		 	a[i][++len]=c%10;
+		 	c/=10;
+		 }
+		 //以上是相乘 
+		 for(j=len;j>0;j--)
+		 {
+		 	s=a[i][j]+c*10;
+		 	a[i][j]=s/(i+1);
+		 	c=s%(i+1);
+		 }
+		 //以上是相除
+		 while(!a[i][len])
+		 	len--;
+		//逆序存储的数组 
+		a[i][0]=len; 
+	 } 
+ }
+ int main()
+ {
+ 	catalan();
+ 	int n;
+ 	while(cin>>n)
+ 	{
+ 		for(int i=a[n][0];i>0;i--)
+ 		{
+ 			cout<<a[n][i];
+		 }
+		 cout<<endl;
+	 }
+	 return 0;
+  } 
