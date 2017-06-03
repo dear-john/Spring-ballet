@@ -1,0 +1,89 @@
+#include<iostream>
+#include<cmath>
+#include<algorithm>
+#include<iomanip>
+using namespace std;
+const int N=100000;
+
+struct point
+{
+	double x;
+	double y;
+}p[N],ans[N];
+
+bool cmpx(point a,point b)
+{
+	return a.x<b.x;
+}
+
+bool cmpy(point a,point b)
+{
+	return a.y<b.y;
+}
+
+double dis(point a,point b)
+{
+	double i=a.x-b.x;
+	double j=a.y-b.y;
+	return sqrt(i*i+j*j);
+}
+
+double min(double a,double b)
+{
+	return a<b?a:b;
+}
+
+double mindis(int l,int r)
+{
+	double mini;
+	
+	if(r-l==1)
+		return dis(p[l],p[r]);
+	if(r-l==2)
+		return min( min( dis(p[l],p[l+1]), dis(p[l],p[l+2]) ), dis(p[r],p[l+1]));
+	else
+	{
+		int mid=(l+r)/2,i,j,count;
+		mini=min( mindis(l,mid),mindis(mid+1,r) );
+		
+		for(i=l,count=0;i<r;i++)
+		{
+			if(fabs(p[i].x-p[mid].x)<mini)
+				ans[count++]=p[i];
+		}
+		
+		sort(p,p+count,cmpy);
+		
+		for(i=0;i<count;i++)
+		{
+			for(j=i+1;j<count;j++)
+			{
+				if(ans[j].y-ans[i].y>=mini)break;
+				mini=min(mini,dis(ans[i],ans[j]));
+			}
+		 } 
+	}
+	
+	return mini;
+}
+
+int main()
+{
+	int n;
+	while(cin>>n)
+	{
+		if(!n)break;
+		
+		for(int i=0;i<n;i++)
+		{
+			cin>>p[i].x>>p[i].y;
+		}
+		
+		sort(p,p+n,cmpx);
+		double min=mindis(0,n-1);
+		
+		cout<<fixed<<setprecision(2)<<min/2<<endl;
+	}
+	
+	return 0;
+}
