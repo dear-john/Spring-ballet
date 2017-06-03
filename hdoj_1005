@@ -1,0 +1,23 @@
+#include<iostream>
+using namespace std;
+
+//这道题是从 f(1) = 1 和 f(2) = 1 开始，然后依次模7，可知 f(n) 只有7种情况，所以两数相邻只有7*7=49种；
+//所以从 f(1) 到 f(49) 必会出现相邻两个 f(m-1) = 1 , f(m) = 1，所以 f(n) 为周期函数，49为其一个周期；
+int main()
+{
+	int a,b;
+	long long n;
+	while(cin>>a>>b>>n)
+	{
+		if(a==0&b==0&n==0)break;
+		int s[50];
+		s[1]=s[2]=1;
+		for(int i=3;i<=49;i++)
+			s[i]=(a*s[i-1]+b*s[i-2])%7;
+		n%=48;
+		s[0]=s[48];
+		cout<<s[n]<<endl;
+	}
+	
+	return 0;
+ } 
