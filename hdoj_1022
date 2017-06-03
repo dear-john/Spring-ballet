@@ -1,0 +1,43 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	int n;
+	char o1[15],o2[15],s[15]={0};
+	int flag[15]={0};//不能用10，11，12
+	//13，14没实验 
+	//鬼知道为啥 
+	//1--out,0--in 
+	while(cin>>n)
+	{
+		cin>>o1>>o2;
+			int k=0,top=-1,j=0;
+			for(int i=0;i<n;i++)
+			{
+				s[++top]=o1[i];
+				flag[k++]=0;
+				while(o2[j]==s[top]&&top!=-1)
+				{
+					flag[k++]=1;
+					top--;
+					j++;
+				}
+			}
+			if(top!=-1)//or if(j!=n)
+			{
+				cout<<"No.\n";
+			}
+			else
+			{
+				cout<<"Yes.\n";
+				for(int i=0;i<k;i++)
+				{
+					if(flag[i])
+					cout<<"out\n";
+					else cout<<"in\n";
+				}
+			}
+			cout<<"FINISH\n";
+	}
+	return 0;
+ } 
