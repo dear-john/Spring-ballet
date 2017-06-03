@@ -1,0 +1,43 @@
+#include<iostream>
+using namespace std;
+const int N=1000005;
+int num[N];
+int premax[N];
+
+int max(int a,int b)
+{
+	return a>b?a:b;
+}
+
+int dp(int m,int n)
+{
+	for(int i=1;i<=m;i++){
+	int temp=0;
+	for(int k=1;k<=i;k++)
+		temp+=num[k];
+	premax[n]=temp;
+	
+	for(int j=i+1;j<=n;j++)
+	{
+		temp=max(premax[j-1],temp)+num[j];
+		premax[j-1]=premax[n];
+		premax[n]=max(premax[n],temp);
+	}
+	}
+	return premax[n];
+}
+int main()
+{
+	int m,n,ans;
+	while(cin>>m>>n)
+	{
+		for(int i=1;i<=n;i++)
+		{
+			cin>>num[i];
+			premax[i]=0;
+		}	 
+		ans=dp(m,n);
+		cout<<ans<<endl;
+	}
+	return 0;
+ } 
