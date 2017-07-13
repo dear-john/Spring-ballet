@@ -1,3 +1,7 @@
+//xml文件很简单，只是简单的一个time picker和一个datepicker就不写在这里了
+//代码里类似：year = i；这样的，利用全局变量是为了在改变日期的时候时间也正确显示出来，或者改变时间的时候日期正确显示出来
+//这里是使用接口实现监听，注释掉的使用了匿名内部类，没有完全实现功能
+
 package com.example.myfirstapp;
 
 import android.icu.util.Calendar;
