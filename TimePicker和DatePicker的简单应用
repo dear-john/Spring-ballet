@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements TimePicker.OnTime
         timePicker = (TimePicker) findViewById(R.id.timePicker);
         timePicker.setOnTimeChangedListener(this);
         datePicker.init(year, calendar.get(Calendar.MONTH), day,this);
+        
+
 //        datePicker.init(year, month, day, new DatePicker.OnDateChangedListener() {
 //            @Override
 //            public void onDateChanged(DatePicker datePicker, int i, int i1, int i2) {
@@ -66,3 +68,31 @@ public class MainActivity extends AppCompatActivity implements TimePicker.OnTime
         setTitle(i + "-" + month + "-" + i2 + " " + hour + ":" + minute);
     }
 }
+
+
+//下面的代码是使用对话框实现日期和时间的改变，各种懵逼
+
+        time_button = (Button)findViewById(R.id.time_button);
+        date_button = (Button) findViewById(R.id.date_button);
+        date_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(MainActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        setTitle(i + "-" + (i1 + 1)+ "-" + i2 + " " + hour + ":" + minute);
+                    }
+                },year,month - 1,day).show();
+            }
+        });
+        time_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               new TimePickerDialog(MainActivity.this,new TimePickerDialog.OnTimeSetListener(){
+                   @Override
+                   public void onTimeSet(TimePicker timePicker, int i, int i1) {
+                       setTitle(year + "-" + month + "-" + day + " " + i + ":" + i1);
+                   }
+               },hour,minute,true).show();
+            }
+        });
