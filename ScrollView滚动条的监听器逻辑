@@ -1,0 +1,23 @@
+scrollView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        if (scrollView.getScrollY() == 0){
+                            Log.d("tag","top");
+                        }
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        if (scrollView.getChildAt(0).getMeasuredHeight() <=
+                                scrollView.getHeight() + scrollView.getScrollY()){
+                            Log.d("tag","buttom");
+                            textView.append(getResources().getString(R.string.music_logic));
+                        }
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        //
+                        break;
+                }
+                return false;
+            }
+        });
