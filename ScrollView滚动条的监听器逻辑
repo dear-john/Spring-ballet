@@ -37,3 +37,14 @@ scrollView.setOnTouchListener(new View.OnTouchListener() {
         android:layout_height="match_parent" />
 
     </ScrollView>
+//利用scrollby实现按钮的上下滑动效果
+
+switch (view.getId()){
+            case R.id.up:
+                scrollView.scrollBy(0, (int) getResources().getDimension(R.dimen.distance));
+                break;
+            case R.id.down:
+                scrollView.scrollBy(0,30);
+                break;
+        }
+        
