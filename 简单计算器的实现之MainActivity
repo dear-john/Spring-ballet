@@ -1,0 +1,196 @@
+package com.example.calculator;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    private Button button0;
+    private Button button1;
+    private Button button2;
+    private Button button3;
+    private Button button4;
+    private Button button5;
+    private Button button6;
+    private Button button7;
+    private Button button8;
+    private Button button9;
+    private Button button_point;
+    private Button button_add;
+    private Button button_dec;
+    private Button button_multi;
+    private Button button_div;
+    private Button button_equal;
+    private Button button_clear;
+    private Button button_delete;
+    private TextView textView;
+    private boolean clear_flag;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        button0 = (Button) findViewById(R.id.bt0);
+        button1 = (Button) findViewById(R.id.bt1);
+        button2 = (Button) findViewById(R.id.bt2);
+        button3 = (Button) findViewById(R.id.bt3);
+        button4 = (Button) findViewById(R.id.bt4);
+        button5 = (Button) findViewById(R.id.bt5);
+        button6 = (Button) findViewById(R.id.bt6);
+        button7 = (Button) findViewById(R.id.bt7);
+        button8 = (Button) findViewById(R.id.bt8);
+        button9 = (Button) findViewById(R.id.bt9);
+        button_point = (Button) findViewById(R.id.bt_point);
+        button_add = (Button) findViewById(R.id.bt_add);
+        button_dec = (Button) findViewById(R.id.bt_dec);
+        button_multi = (Button) findViewById(R.id.bt_multi);
+        button_div = (Button) findViewById(R.id.bt_div);
+        button_delete = (Button) findViewById(R.id.bt_delete);
+        button_clear = (Button) findViewById(R.id.bt_clear);
+        button_equal = (Button) findViewById(R.id.bt_equal);
+        textView = (TextView) findViewById(R.id.textView);
+        button0.setOnClickListener(this);
+        button1.setOnClickListener(this);
+        button2.setOnClickListener(this);
+        button3.setOnClickListener(this);
+        button4.setOnClickListener(this);
+        button5.setOnClickListener(this);
+        button6.setOnClickListener(this);
+        button7.setOnClickListener(this);
+        button8.setOnClickListener(this);
+        button9.setOnClickListener(this);
+        button_point.setOnClickListener(this);
+        button_add.setOnClickListener(this);
+        button_dec.setOnClickListener(this);
+        button_multi.setOnClickListener(this);
+        button_div.setOnClickListener(this);
+        button_equal.setOnClickListener(this);
+        button_clear.setOnClickListener(this);
+        button_delete.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        String string = textView.getText().toString();
+        switch (view.getId()){
+            case R.id.bt0:
+            case R.id.bt1:
+            case R.id.bt2:
+            case R.id.bt3:
+            case R.id.bt4:
+            case R.id.bt5:
+            case R.id.bt6:
+            case R.id.bt7:
+            case R.id.bt8:
+            case R.id.bt9:
+            case R.id.bt_point:
+                if (clear_flag){
+                    clear_flag = false;
+                    string = "";
+                   textView.setText("");
+                }
+               textView.setText(string + "" + ((Button) view).getText());
+                break;
+            case R.id.bt_add:
+            case R.id.bt_dec:
+            case R.id.bt_multi:
+            case R.id.bt_div:
+                if (clear_flag){
+                    clear_flag = false;
+                    string = "";
+                   textView.setText("");
+                }
+               textView.setText(string + " " + ((Button) view).getText() + " ");
+                break;
+            case R.id.bt_clear:
+                clear_flag = false;
+                string = "";
+               textView.setText("");
+                break;
+            case R.id.bt_delete:
+                if (clear_flag){
+                    clear_flag = false;
+                    string = "";
+                   textView.setText("");
+                }else if (string != null && string != "") {
+                   textView.setText(string.substring(0, string.length() - 1));
+                }
+                break;
+            case R.id.bt_equal:
+                getResult();
+                break;
+            default:
+                break;
+
+        }
+    }
+    private void getResult(){
+        String str =textView.getText().toString();
+        if (str == null || str.equals("")){
+            return;
+        }
+        if (!str.contains(" ")){
+            return;
+        }
+        if (clear_flag){
+            clear_flag = false;
+            return;
+        }
+        clear_flag = true;
+        double result = 0;
+        String s1 = str.substring(0,str.indexOf(" "));
+        String op = str.substring(str.indexOf(" ") + 1,str.indexOf(" ") + 2);
+        String s2 = str.substring(str.indexOf(" ") + 3);
+        if (!s1.equals("") && !s2.equals("") ){
+            double d1 = Double.parseDouble(s1);
+            double d2 = Double.parseDouble(s2);
+            if (op.equals("+")){
+                result = d1 + d2;
+            }else if (op.equals("-")){
+                result = d1 - d2;
+            }else if (op.equals("*")){
+                result = d1 * d2;
+            }else if (op.equals("/")){
+                if(d2 == 0){
+                   textView.setText(R.string.Error);
+                    return;
+                }else {
+                    result = d1 / d2;
+                }
+            }
+            if (!s1.contains(".") && !s2.contains(".") && op.equals("/") && (d1 % d2 != 0)){
+                    textView.setText(result + "");
+            }else if (s1.contains(".") || s2.contains(".")) {
+                textView.setText(result + "");
+            }else {
+                int ans = (int) result;
+                textView.setText(ans + "");
+            }
+        }else if (s1.equals("") && !s2.equals("")){
+            double d2 = Double.parseDouble(s2);
+            if (op.equals("+")){
+                result = d2;
+            }else if (op.equals("-")){
+                result = 0 - d2;
+            }else if (op.equals("*")){
+                result = 0;
+            }else if (op.equals("/")){
+                result = 0;
+            }
+            if (!s2.contains(".")){
+                int ans = (int) result;
+               textView.setText(ans + "");
+            }else {
+               textView.setText(result + "");
+            }
+        }else if (!s1.equals("") && s2.equals("")){
+           textView.setText(str);
+        }else {
+           textView.setText("");
+        }
+    }
+}
