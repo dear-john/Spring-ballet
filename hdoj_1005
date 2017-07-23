@@ -15,7 +15,7 @@ int main()
 		for(int i=3;i<=49;i++)
 			s[i]=(a*s[i-1]+b*s[i-2])%7;
 		n%=48;
-		s[0]=s[48];
+		
 		cout<<s[n]<<endl;
 	}
 	
