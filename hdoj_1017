@@ -1,0 +1,37 @@
+//输入0、0是代表一个输入块的结束
+
+
+
+#include<iostream>
+using namespace std;
+int main()
+{
+
+	//
+	int t;
+	cin>>t;
+		int n;
+		int m;
+		int sum;
+		int s;
+		while(t--){
+			s=0;
+			while(cin>>n>>m){
+				s++;
+				if(n==0&&m==0)break;
+				sum=0;
+				for(int i=1;i<n-1;i++){
+					for(int j=i+1;j<n;j++){
+						if((i*i+j*j+m)%(i*j)==0)
+							sum++;
+					}
+				}
+				cout<<"Case "<<s<<": "<<sum<<endl;
+			}
+			if(t!=0)cout<<endl;
+		}
+		
+	
+	//
+	return 0;
+}
