@@ -1,0 +1,27 @@
+//题目有毒，简单至极，描述却十分吐血
+
+#include<iostream>
+using namespace std;
+int main(){
+	//
+	int a,b,c;
+	cin>>a;
+	if(a<=168){
+		cout<<"CRASH "<<a;	
+	}else {
+		cin>>b;
+		if(b<=168){
+			cout<<"CRASH "<<b;	
+		}else {
+			cin>>c;
+			if(c<=168){
+				cout<<"CRASH "<<c;	
+			}else{
+				cout<<"NO CRASH";
+			}
+		}
+	}
+	cout<<endl;
+	//
+	return 0;
+}
