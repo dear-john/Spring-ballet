@@ -1,0 +1,30 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+int main(){
+	//
+	char txt[210];
+	char c[20];
+	while(cin.getline(c,10,'\n')){
+		if(c[0]=='S'&&c[1]=='T'&&c[2]=='A'&&c[3]=='R'&&c[4]=='T'){
+			cin.getline(txt,205,'\n');
+			for(int i=0;i<strlen(txt);i++){
+				if(txt[i]>=70&&txt[i]<=90)
+					txt[i]=txt[i]-5;
+				else if(txt[i]>=65&&txt[i]<70)
+					txt[i]=txt[i]+21;
+			}
+			for(int i=0;i<strlen(txt);i++){
+				cout<<txt[i];
+			}
+		}else if(c[0]=='E'&&c[1]=='N'&&c[2]=='D'){
+			cout<<endl;
+		}else if(c[0]=='E'&&c[1]=='N'&&c[2]=='D'&&c[3]=='O'&&c[4]=='F'&&c[5]=='I'&&c[6]=='N'&&c[7]=='P'&&c[8]=='U'&&c[9]=='T'){
+			break;
+		}
+	}
+	//
+	return 0;
+}
+
+///cin.getline函数可以读取空格，并设置以换行为结束标志
