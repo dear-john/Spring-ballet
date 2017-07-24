@@ -1,9 +1,11 @@
+//尝试输出几个结果就能发现规律
+
 #include<iostream>
 using namespace std;
 int main()
 {
 	int n;
-	while(cin>>n)		//不能用while（1）无限循环输入导致超时 
+	while(cin>>n)	
 	{
 		if(n% 4 ==2)
 			cout<<"yes\n";
