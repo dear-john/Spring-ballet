@@ -1,0 +1,26 @@
+#include<iostream>
+using namespace std;
+int main(){
+	//
+	double t;
+	double sum;
+	while(cin>>t){
+		if(t==0.00)break;
+		else{
+			int	i=1;
+			sum=0.00;
+			for(;i<300;i++){
+				sum+=1.0/(i+1);
+				if(sum>=t)
+					break;
+			}
+			cout<<i<<" card(s)\n";
+		}
+	}
+	//
+	return 0;
+}
+
+//别用欧拉公式，精度不够
+
+//题目是从1/2开始累加，所以最后的card要比计算的最后一项小1
