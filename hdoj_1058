@@ -1,0 +1,41 @@
+//目前还没搞太懂动态规划问题orz
+//百度别人的代码。。。。
+//加油
+
+#include<iostream>
+using namespace std;
+int a=1,b=1,c=1,d=1;
+int s[6000]={0,1};
+int fun(int aa,int bb,int cc,int dd){
+	int min=aa;
+	if(bb<min)min=bb;
+	if(cc<min)min=cc;
+	if(dd<min)min=dd;
+	if(aa==min)a++;
+	if(bb==min)b++;
+	if(cc==min)c++;
+	if(dd==min)d++;
+	return min;
+}
+int main(){
+	//
+	
+	for(int i=2;i<=5842;i++){
+		s[i]=fun(2*s[a],3*s[b],5*s[c],7*s[d]);
+	}
+	int n;
+	while(cin>>n){
+		if(!n)break;
+		if(n%10==1&&n%100!=11){
+			cout<<"The "<<n<<"st humble number is "<<s[n]<<".\n";
+		}else if(n%10==2&&n%100!=12){
+			cout<<"The "<<n<<"nd humble number is "<<s[n]<<".\n";
+		}else if(n%10==3&&n%100!=13){
+			cout<<"The "<<n<<"rd humble number is "<<s[n]<<".\n";
+		}else {
+			cout<<"The "<<n<<"th humble number is "<<s[n]<<".\n";
+		}	
+	}
+	//
+	return 0;
+}
