@@ -1,6 +1,36 @@
 //枚举，发现规律
 //待我看看有无其他方法
+
+//所有数字最多以4为周期，所以可以进行mod4操作，如果为0则为4，否则就为余数
+
+/*
 #include<iostream>
+using namespace std;
+int main(){
+	//
+	int t;
+	int n;
+	int ans;
+	cin>>t;
+	while(t--){
+		cin>>n;
+		ans=1;
+		int d=n%10;
+		int k=n%4;
+		if(k==0){
+			k=4;
+		}
+		while(k--){
+			ans=ans*d%10;
+		}
+		cout<<ans<<endl;
+	}
+	//
+	return 0;
+}
+
+*/
+include<iostream>
 using namespace std;
 int main(){
 	//
