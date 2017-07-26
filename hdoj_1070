@@ -1,0 +1,45 @@
+//按照hint做，就行了
+//按我第一次做用价格除去奶量全是wa，也不知道咋回事
+#include<iostream>
+#include<string>
+using namespace std;
+struct Milk{
+	string name;
+	int price;
+	int volume;
+	double dj;
+}milk[105];
+int main(){
+	//
+	int t;
+	int n;
+	int pos;
+	cin>>t;
+	while(t--){
+		cin>>n;
+		pos=1;
+		for(int i=1;i<=n;i++){
+			cin>>milk[i].name;
+			cin>>milk[i].price;
+			cin>>milk[i].volume;
+		}
+		for(int i=1;i<=n;i++){
+			if(milk[i].volume<200)continue;
+			int k=1000-milk[i].volume;
+			if(k>0){
+				milk[i].dj=milk[i].price*1.0/(milk[i].volume/200);
+			}else{
+				milk[i].dj=milk[i].price*1.0/5;
+			}
+			if(milk[pos].dj>milk[i].dj){
+					pos=i;
+			}else if(milk[pos].dj==milk[i].dj&&milk[i].volume>milk[pos].volume){
+					pos=i;
+			}
+		}
+		cout<<milk[pos].name;
+		cout<<endl;
+	}
+	//
+	return 0;
+}
