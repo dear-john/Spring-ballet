@@ -1,0 +1,21 @@
+//想不到，数学题
+
+#include<iostream>
+using namespace std;
+int main(){
+	int k;
+	int a;
+	bool flag; 
+	while(cin>>k){
+		flag=false;
+		for(a=1;a<=64;a++){
+			if((18+k*a)%65==0){
+				cout<<a<<endl;
+				flag=true;
+				break;
+			}
+		}
+		if(!flag)cout<<"no\n";
+	}
+	return 0;
+}
