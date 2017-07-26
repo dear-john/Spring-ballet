@@ -1,0 +1,54 @@
+//超时，不知道为啥
+
+#include<iostream>
+using namespace std;
+int main(){
+	//
+	int t;
+	cin>>t;
+	int y,n;
+	while(t--){
+		cin>>y>>n;
+		for(int i=0;i<=3;i++){
+			y+=i;
+			if((y%4==0&&y%100!=0)||(y%400==0)){
+				n--;
+				break;
+			}
+		}
+		int m=1;
+		while(m<=n){
+			y+=4;
+			if((y%4==0&&y%100!=0)||(y%400==0)){
+				m++;
+			}
+		}
+		cout<<y<<endl;
+	}
+	//
+	return 0;
+}
+
+//ac的代码
+
+#include<iostream>
+using namespace std;
+int main(){
+	//
+	int t;
+	cin>>t;
+	int y,n;
+	while(t--){
+		cin>>y>>n;
+		int m=1;
+		while(m<=n){
+			if((y%4==0&&y%100!=0)||(y%400==0)){
+				m++;
+			}
+			y++;
+		}
+		cout<<y-1<<endl;
+	}
+	//
+	return 0;
+}
