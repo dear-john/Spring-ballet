@@ -1,0 +1,63 @@
+//倒序进行提取数字的操作
+//可能会有多个5连续
+//找好数字的区间
+
+#include<iostream>
+#include<cmath>
+#include<string.h>
+#include<algorithm>
+using namespace std;
+char num[1005];
+int n[1005];
+int pos;
+void fun(int left,int right){
+	int s=0;
+	int t=0;
+	for(int i=right;i>=left;i--){
+		s+=(num[i]-'0')*pow(10,t++);
+	}
+	n[pos++]=s;
+}
+int main(){
+	//
+	int len;
+	int left;
+	int right;
+	int i;
+	while(cin>>num){
+		pos=0;
+		len=strlen(num);
+		for(i=len-1;i>=0;i--){
+			if(num[i]-'0'!=5)
+				break;
+		}
+		left=right=i;
+		for(int j=i-1;j>=0;){
+			if(num[j]-'0'==5){
+				left=j+1;
+				fun(left,right);
+//				right=j-1;
+//				if(right==0){
+//					n[pos++]=0;
+//					break;
+//				}else{
+//					j=right-1;
+//				}
+				while(num[j]-'0'==5)j--;
+				right=j;
+			}else{
+				left=j;
+				j=left-1;
+			}
+			if(left==0)fun(left,right);
+		}
+		sort(n,n+pos);
+		for(i=0;i<pos;i++){
+			cout<<n[i];
+			if(i!=pos-1)cout<<" ";
+		}
+		cout<<endl;
+	}
+	//
+	return 0;
+}
