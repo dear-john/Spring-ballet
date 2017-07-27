@@ -1,0 +1,35 @@
+//直接除以16和12的所有可能值，从大到小，就可以直接得到要求的数字和了
+
+#include<iostream>
+using namespace std;
+int fun12(int n){
+	int a=n/1728;
+	n%=1728;
+	int b=n/144;
+	n%=144;
+	int c=n/12;
+	n%=12;
+	return a+b+c+n;
+}
+int fun16(int n){
+	int a=n/4096;
+	n%=4096;
+	int b=n/256;
+	n%=256;
+	int c=n/16;
+	n%=16;
+	return a+b+c+n;
+}
+int main(){
+	//
+	int sum;
+	for(int i=2;i<=9;i++)
+		cout<<2990+i<<endl;
+	for(int i=3000;i<10000;i++){
+		sum=i%10+i/10%10+i/100%10+i/1000;
+		if(sum==fun12(i)&&sum==fun16(i))
+			cout<<i<<endl;
+	}
+	//
+	return 0;
+}
