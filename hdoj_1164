@@ -1,0 +1,51 @@
+//先把素数全部球出来，然后输入，先判断是不是素数，不是再进行划分，由于可能会有多个同样因子，所以使用while
+//n==1或者素数大于n了就跳出
+#include<iostream>
+using namespace std;
+int num[60000]={2,3,5,7,11,13,17,19};
+int pos=8;
+int fac[1000];
+void fun(){
+	int i;
+	int j;
+	for(i=23;i<=65535;i+=2){
+		for(j=2;j*j<=i;j++){
+			if(i%j==0)break;
+		}
+		if(j*j>i)num[pos++]=i;
+	}
+}
+bool search(int n){
+	for(int i=0;i<pos;i++){
+		if(n==num[i])
+			return true;
+	}
+	return false;
+}
+int main(){
+	//
+	fun();
+	int n;
+	int p;
+	while(cin>>n){
+		if(search(n)==true){
+			cout<<n<<endl;
+		}else{
+			p=0;
+			for(int i=0;i<pos;i++){
+				while(n%num[i]==0){
+					fac[p++]=num[i];
+					n/=num[i];
+					if(n==1||num[i]>n)break;
+				}	
+			}
+			for(int i=0;i<p;i++){
+				cout<<fac[i];
+				if(i!=p-1)cout<<"*";
+			}
+			cout<<endl;
+		}
+	}
+	//
+	return 0;
+}
