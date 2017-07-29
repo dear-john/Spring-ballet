@@ -1,0 +1,75 @@
+//字符数组没清空坑了一整天
+
+#include<iostream>
+#include<string>
+#include<string.h> 
+using namespace std;
+char n[35];
+int temp[35];
+string out;
+int len;
+int sum;
+int hws(){
+	for(int i=0;i<len/2;i++){
+		if(n[i]!=n[len-i-1]){
+			return 0;
+		}
+	}
+	return 1;
+}
+void add(){
+	int i;
+	temp[0]=0;
+	for(i=0;i<len;i++){
+		temp[i+1]=n[i]-'0'+n[len-i-1]-'0';
+	}
+//	for(int i=1;i<=len;i++)
+//		cout<<temp[i];
+//	cout<<endl;
+	for(i=len;i>0;i--){
+		if(temp[i]>9){
+			temp[i]-=10;
+			temp[i-1]++;
+		}
+	}
+//	for(int i=0;i<=len;i++)
+//		cout<<temp[i];
+//	cout<<endl;
+	for(i=0;i<35;i++)
+		n[i]='\0';
+    
+//清空char数组，太坑了
+	if(temp[0]){
+		len++;
+		for(i=0;i<len;i++)
+			n[i]=temp[i]+'0';	
+	}else{
+		for(i=1;i<=len;i++)
+			n[i-1]=temp[i]+'0';
+	}
+
+//	cout<<n<<endl;
+}
+int main(){
+	//
+	int t;
+	char k[5]={'-','-','-','>'};
+	while(cin>>n){
+		out="";
+		sum=0;
+		out+=n;
+		len=strlen(n);
+		t=hws();
+		while(t==0){
+			add();
+			out+=k;
+			out+=n;
+			sum++;
+			t=hws();
+		}
+		cout<<sum<<endl;
+		cout<<out<<endl;
+	}
+	//
+	return 0;
+}
