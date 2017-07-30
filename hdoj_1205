@@ -1,0 +1,54 @@
+//
+//摘抄：/*
+鸽巢原理
+
+证明：
+
+    1.把某种糖果看做隔板,如果某种糖果有n个,那么就有n+1块区域,至少需要n-1块其他种糖果才
+
+能使得所有隔板不挨在一块..也就是说能吃完这种糖果.至少需要其他种类糖果n-1块..(鸽巢原理)
+
+    2.数量最多的糖果(隔板)可以构造最多的空间,如果这种糖果有maxn个....那么需要maxn-1个其
+
+他种糖果.对于某种数量少于maxn的糖果来说,可以在原本数量最多的糖果构造的隔板上"加厚"原
+
+有的隔板...,那么这"某种糖果"就销声匿迹了.....
+    
+    考虑极端情况.如果某种糖果无法在这maxn+1的空间内构造出符合条件的序列,那么这种糖果至
+
+少要有maxn+1+1个(考虑只有两种糖果的情况)...(鸽巢原理)...但是这与数量最多的那种糖果只有
+
+maxn个矛盾.....(maxn+1+1>maxn 这不等式不难理解吧....).
+*/
+//求和居然要用long long类型，心累
+#include<iostream>
+#include<stdio.h>
+using namespace std;
+int main(){
+	//
+	int t;
+//	cin>>t;
+	scanf("%d",&t);
+	int n;
+	int smax;
+	long long sum;
+	int k;
+	while(t--){
+//		cin>>n;
+		scanf("%d",&n);
+		sum=0;
+		smax=0;
+		while(n--){
+//			cin>>k;
+			scanf("%d",&k);
+			sum+=k;
+			if(k>smax)
+				smax=k;
+		}
+		sum-=smax;
+		if(sum>=smax-1)cout<<"Yes\n";
+		else cout<<"No\n"; 
+	}
+	//
+	return 0;
+}
