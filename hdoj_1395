@@ -1,0 +1,33 @@
+//首次使用位运算，以及快速幂，以及对其进行取模
+
+#include<iostream>
+using namespace std;
+int n;
+long long ksm(int m){
+	long long r=1;
+	long long a=2;
+	while(m){
+		if(m&1)r=r*a%n;
+		m>>=1;
+		a=a*a%n;
+	}
+	return r;
+}
+int main(){
+	// 
+	while(cin>>n){
+		if(n%2==0||n==1)cout<<"2^? mod "<<n<<" = 1\n";
+		else {
+			for(int i=1;;i++){
+				if(ksm(i)==1){
+					cout<<"2^"<<i<<" mod "<<n<<" = 1\n";
+					break;
+				}
+			}
+		}
+	}
+	//
+	return 0;
+}
+
+
