@@ -1,0 +1,46 @@
+//思路：全部装错，就等于全排列减去放对一个，放错n-1个，再是放对2个，放错n-2个，依次类推，一直减到放对n-2个，放错2个，最后再减去全放
+
+//放对n-1个，放对1个的情况为0 ，所以就没有计算的必要了
+//注意是long long 型
+#include<iostream>
+using namespace std;
+long long num[25]={0,0,1,2};
+
+long long jc(int n){
+	long long ans=1;
+	while(n){
+		ans=ans*(n--);
+	}
+	return ans;
+}
+
+long long fun(int n,int x){
+	long long a=1;
+	long long b=jc(x);
+	for(int i=0;i<x;i++){
+		a*=(n-i);
+	}
+	return a/b*num[n-x];
+}
+
+void Init(){
+	long long sum;
+	int i,j;
+	for(i=4;i<=20;i++){
+		sum=0;
+		for(j=1;j<=i-2;j++){
+			sum+=fun(i,j);
+		}
+		num[i]=jc(i)-sum-1;
+	}
+}
+
+int main(){
+
+	Init();
+	int n;
+	while(cin>>n){
+		cout<<num[n]<<endl;
+	}
+    return 0;
+}
