@@ -1,0 +1,40 @@
+//使用sort对结构体排序，自定义比较函数就行了
+
+#include<iostream>
+#include<algorithm>
+#include<string>
+using namespace std;
+struct Stud{
+  string no;
+  string name;
+  int score;
+}stud[100005];
+bool cmp1(Stud a,Stud b){
+  return a.no>b.no?false:true;
+}
+bool cmp2(Stud a,Stud b){
+  if(a.name==b.name)return a.no>b.no?false:true;
+  return a.name>b.name?false:true;
+}
+bool cmp3(Stud a,Stud b){
+  if(a.score==b.score)return a.no>b.no?false:true;
+  return a.score>b.score?false:true;
+}
+int main(){
+  int n,c;
+  int i,j;
+  int order=1;
+  while(cin>>n>>c&&n&&c){
+    for(i=0;i<n;i++)
+        cin>>stud[i].no>>stud[i].name>>stud[i].score;
+    if(c==1)sort(stud,stud+n,cmp1);
+    else if(c==2)sort(stud,stud+n,cmp2);
+    else if(c==3)sort(stud,stud+n,cmp3);
+    cout<<"Case "<<order++<<":"<<endl;
+    for(i=0;i<n;i++){
+        cout<<stud[i].no<<" "<<stud[i].name<<" "<<stud[i].score;
+        cout<<endl;
+    }
+  }
+  return 0;
+}
