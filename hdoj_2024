@@ -1,0 +1,32 @@
+#include<iostream>
+#include<string.h>
+#include<string>
+using namespace std;
+int main(){
+  int t,len,tag;
+  cin>>t;
+  cin.get();//忽略掉换行符，不然读取字符串的时候会读取到换行符，就有问题了
+  char c[60];
+  while(t--){
+    cin.getline(c,55);
+    len=strlen(c);
+    tag=0;
+    if((c[0]>='A'&&c[0]<='Z')||(c[0]>='a'&&c[0]<='z')||(c[0]=='_')){
+        tag=1;
+    }else{
+        cout<<"no\n";
+        continue;
+    }
+    for(int i=1;i<len;i++){
+       if((c[i]>='A'&&c[i]<='Z')||(c[i]>='a'&&c[i]<='z')||(c[i]=='_')||(c[i]>='0'&&c[i]<='9')){
+            tag=1;
+       }else{
+              cout<<"no\n";
+              tag=0;
+              break;
+        }
+    }
+    if(tag)cout<<"yes\n";
+  }
+  return 0;
+}
