@@ -1,0 +1,20 @@
+//打表，自己列一下每年的数量变化就懂了，分别为可生产的，一年的，两年的，三年的，之后一年变两年，两年变三年，三年加到可生产的上面去
+
+#include<iostream>
+using namespace std;
+int main(){
+  long long num[60]={0,1,2,3,4,6};
+  long long can=3,first=3,second=2,third=1;
+  for(int i=6;i<56;i++){
+    num[i]=can+first+second+third;
+    can=can+third;
+    third=second;
+    second=first;
+    first=can;
+  }
+  int n;
+  while(cin>>n&&n){
+    cout<<num[n]<<endl;
+  }
+  return 0;
+}
