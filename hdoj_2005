@@ -1,0 +1,45 @@
+//用c++不好控制输入，只能从后往前扫描，因为年可能不是4位，而是更多位
+//用c的scanf十分爽啊
+//#include<stdio.h>
+//scanf("%d/%d/%d",&year,&month,&day);
+
+
+#include<iostream>
+#include<string.h>
+#include<cmath>
+using namespace std;
+int main(){
+ char date[100];
+ int year,month,day,ans,i,len,j;
+ int d[13]={0,31,28,31,30,31,30,31,31,30,31,30,31};
+ while(cin>>date){
+    year=month=day=0;
+    len=strlen(date);
+    j=0;
+    for(i=len-1;i>=0;i--){
+        if(date[i]!='/')day+=(date[i]-'0')*pow(10,j++);
+        else break;
+    }
+    j=0;
+    for(i=i-1;i>=0;i--){
+        if(date[i]!='/')month+=(date[i]-'0')*pow(10,j++);
+        else break;
+    }
+    j=0;
+    for(i=i-1;i>=0;i--){
+        if(date[i]!='/')year+=(date[i]-'0')*pow(10,j++);
+        else break;
+    }
+    if(month==1)ans=day;
+    else if(month==2)ans=31+day;
+    else {
+        ans=0;
+        for(int i=1;i<month;i++)
+            ans+=d[i];
+        ans+=day;
+        if((year%4==0&&year%100!=0)||(year%400==0))ans++;
+    }
+    cout<<ans<<endl;
+ }
+  return 0;
+}
