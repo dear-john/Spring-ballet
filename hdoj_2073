@@ -1,0 +1,27 @@
+//坑吭的题目，无fuck说
+
+#include<iostream>
+#include<iomanip>
+#include<cmath>
+#define P 1.414213562
+using namespace std;
+int main(){
+ int t;
+ long double dis[210][210];
+ dis[0][0]=0;
+ dis[0][1]=1;
+ for(int i=1;i<=205;i++){
+    dis[i][0]=dis[0][i]+i*P;
+    dis[0][i+1]=dis[i][0]+sqrt(double(i*i+(i+1)*(i+1)));
+    for(int j=1;j<i;j++){
+        dis[j][i-j]=dis[j-1][i-j+1]+P;
+    }
+ }
+ int x1,x2,y1,y2;
+ cin>>t;
+ while(t--){
+    cin>>x1>>y1>>x2>>y2;
+    cout<<fixed<<setprecision(3)<<fabs(dis[x1][y1]-dis[x2][y2])<<endl;
+ }
+  return 0;
+}
