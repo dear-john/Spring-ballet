@@ -1,0 +1,66 @@
+//输出格式控制还没完成，还要努力，copy的别人c的输出，c++输出总是有问题
+
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+#include<string>
+#include<string.h>
+#include<iomanip>
+#include<stdio.h>
+using namespace std;
+struct Stud{
+    string name;
+    int ac;
+    int time;
+    char pb[15];
+}stud[10000];
+bool cmp(Stud a,Stud b){
+    if(a.ac!=b.ac)return a.ac>b.ac?true:false;
+    if(a.time!=b.time)return a.time<b.time?true:false;
+    return a.name<b.name?true:false;
+}
+int main(){
+    int n,m,i,j,k,temp,len,num,s;
+    string str;
+    cin>>n>>m;
+    i=num=0;
+    while(cin>>str){
+        stud[i].name=str;
+        stud[i].ac=0;
+        stud[i].time=0;
+        s=temp=0;
+        for(j=0;j<n;j++){
+            cin>>stud[i].pb;
+            if(stud[i].pb[0]=='0'||stud[i].pb[0]=='-')continue;
+            len=strlen(stud[i].pb);
+            stud[i].ac++;
+            for(k=0;k<len;k++){
+                if(stud[i].pb[k]>='0'&&stud[i].pb[k]<='9')
+                    s=s*10+(stud[i].pb[k]-'0');
+                if(stud[i].pb[k]=='('){
+                    for(int x=k+1;x<len-1;x++){
+                        temp=temp*10+(stud[i].pb[x]-'0');
+                    }
+                    break;
+                }
+            }
+            stud[i].time+=temp*m+s;
+            s=temp=0;
+        }
+        i++;
+    }
+    num=i;
+    sort(stud,stud+num,cmp);
+    for(i=0;i<num;i++){
+        /*cout<<resetiosflags(ios::left);
+        cout<<setiosflags(ios::left);
+        cout<<setw(10)<<stud[i].name;
+        cout<<resetiosflags(ios::right);
+        cout<<setw(3)<<stud[i].ac;
+        //cout<<setiosflags(ios::right);
+        cout<<setw(5)<<stud[i].time;
+        cout<<endl;*/
+        printf("%-10s %2d %4d\n",stud[i].name.c_str(),stud[i].ac,stud[i].time);
+    }
+  return 0;
+}
